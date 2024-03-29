@@ -1,4 +1,4 @@
-package io.github.maayur28.common.model;
+package in.trackmyprice.commons.model;
 
 import lombok.Data;
 

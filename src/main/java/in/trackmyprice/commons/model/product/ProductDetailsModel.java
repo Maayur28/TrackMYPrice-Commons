@@ -1,6 +1,7 @@
-package io.github.maayur28.common.model;
+package in.trackmyprice.commons.model.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import in.trackmyprice.commons.model.Rating;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -14,30 +15,32 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductDetailModel {
+public class ProductDetailsModel {
 
     private String productId;
 
     private long sequenceId;
 
+    private String code;
+
     @NotEmpty
     private String title;
 
-    private BigDecimal discountPrice;
-
     private BigDecimal originalPrice;
+
+    private BigDecimal discountPrice;
 
     @NotEmpty
     @Pattern(regexp = "https://.*")
     private String image;
+
+    private List<String> traits;
 
     private List<String> subImages;
 
     private String badge;
 
     private Rating rating;
-
-    private List<String> traits;
 
     @NotEmpty
     @Pattern(regexp = "AMAZON|FLIPKART")
@@ -48,4 +51,6 @@ public class ProductDetailModel {
     private String url;
 
     private Boolean inStock;
+
+    private String lastUpdatedAt;
 }
