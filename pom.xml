@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>io.github.maayur28</groupId>
 	<artifactId>trackmyprice-commons</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<packaging>jar</packaging>
 
 	<name>trackmyprice-commons</name>
@@ -52,7 +52,12 @@
 			<artifactId>aws-java-sdk-dynamodb</artifactId>
 			<version>1.12.533</version>
 		</dependency>
-
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
