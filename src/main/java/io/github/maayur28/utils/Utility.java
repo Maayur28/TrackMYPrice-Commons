@@ -1,8 +1,8 @@
 package io.github.maayur28.utils;
 
 import io.micrometer.common.util.StringUtils;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
 import static io.github.maayur28.utils.Constants.CONST_REQUEST_ID;

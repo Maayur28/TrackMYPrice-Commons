@@ -3,8 +3,8 @@ package io.github.maayur28.utils;
 public final class Constants {
     private Constants() {
     }
-
     public static final String CONST_REQUEST_ID = "requestId";
+    public static final String IP_ADDRESS = "ipAddress";
     static final String[] HEADERS_TO_TRY = {
             "X-Forwarded-For",
             "Proxy-Client-IP",
