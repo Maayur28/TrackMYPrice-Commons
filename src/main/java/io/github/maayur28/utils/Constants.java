@@ -35,6 +35,11 @@ public final class Constants {
     public static final String CONST_TMYP_URL = "https://tmyp.in";
     public static final String CONST_DEFAULT_TIME_ZONE = "Asia/Kolkata";
     public static final String CONST_RABBIT_MQ_NOTIFICATION_EXCHANGE = "notification";
-    public static final String CONST_RABBIT_MQ_FEED_SCHEDULER_EXCHANGE = "feedscheduler";
+    public static final String CONST_RABBIT_MQ_FEED_SERVICE_EXCHANGE = "feedservice";
     public static final String CONST_TOTAL_PRODUCT_COUNT = "TOTAL_PRODUCT_COUNT";
+    public static final String CONST_PRIORITY_SCRAP_ROUTING_KEY = "priorityScrap";
+    public static final String CONST_FEED_SCHEDULER_INDEX_ROUTING_KEY = "feedSchedulerIndex";
+    public static final String CONST_PRIORITY_THREE = "3";
+    public static final String CONST_PRIORITY_TWO = "2";
+
 }
