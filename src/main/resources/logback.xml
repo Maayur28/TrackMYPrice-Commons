@@ -2,7 +2,7 @@
 <configuration>
     <appender name="CloudWatch" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <pattern>%msg%n</pattern>
+            <pattern>{"replicaId":"${HOSTNAME}", "message": "%msg"}</pattern>
         </encoder>
     </appender>
     <root level="INFO">
