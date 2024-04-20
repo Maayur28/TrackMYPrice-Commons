@@ -29,7 +29,6 @@ public final class Constants {
     public static final String CONST_DEALS_OF_THE_DAY = "DEALSOFTHEDAY";
     public static final String CONST_SEARCH_URL = "https://www.trackmyprice.in/dashboard/search?url=";
     public static final String CONST_AWS_SQS_URL = "https://sqs.ap-south-1.amazonaws.com/";
-    public static final String CONST_AWS_DYNAMODB_ENDPOINT = "https://dynamodb.ap-south-1.amazonaws.com";
     public static final String CONST_TMYP_URL = "https://tmyp.in";
     public static final String CONST_DEFAULT_TIME_ZONE = "Asia/Kolkata";
     public static final String CONST_TOTAL_PRODUCT_COUNT = "TOTAL_PRODUCT_COUNT";

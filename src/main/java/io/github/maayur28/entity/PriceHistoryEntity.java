@@ -1,37 +1,33 @@
 package io.github.maayur28.entity;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import io.github.maayur28.model.PriceMapDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@DynamoDBTable(tableName = "PriceHistoryTable")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collection = "PriceHistory")
 public class PriceHistoryEntity {
 
-    @DynamoDBHashKey
+    @Id
     private String productId;
 
-    @DynamoDBAttribute
     private String url;
 
-    @DynamoDBAttribute
     private List<PriceMapDTO> price;
 
-    @DynamoDBAttribute
     private String createdAt;
 
-    @DynamoDBAttribute
     private String updatedAt;
 
-    @DynamoDBIndexHashKey(globalSecondaryIndexName = "lastScrapAt-index", attributeName = "lastScrapAt")
+    @Indexed
     private String lastScrapAt;
 }
+
