@@ -1,8 +1,9 @@
 package io.github.maayur28.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +11,6 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class SearchResponseModel {
     @NotEmpty
     private String title;
@@ -32,4 +32,21 @@ public class SearchResponseModel {
     @NotEmpty
     @Pattern(regexp = "https://.*")
     private String url;
+
+    @JsonCreator
+    public SearchResponseModel(@JsonProperty("title") String title,
+                               @JsonProperty("image") String image,
+                               @JsonProperty("rating") String rating,
+                               @JsonProperty("discountPrice") BigDecimal discountPrice,
+                               @JsonProperty("originalPrice") BigDecimal originalPrice,
+                               @JsonProperty("domain") String domain,
+                               @JsonProperty("url") String url) {
+        this.title = title;
+        this.image = image;
+        this.rating = rating;
+        this.discountPrice = discountPrice;
+        this.originalPrice = originalPrice;
+        this.domain = domain;
+        this.url = url;
+    }
 }
