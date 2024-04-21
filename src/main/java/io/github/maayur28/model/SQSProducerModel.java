@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SQSProducerModel {
 
+    private String requestId;
     private String productId;
     private String domain;
     private String url;

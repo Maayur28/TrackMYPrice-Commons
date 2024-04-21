@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.github.maayur28</groupId>
     <artifactId>trackmyprice-commons</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
 
     <name>trackmyprice-commons</name>
@@ -119,11 +119,6 @@
             <version>3.12.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
