@@ -9,14 +9,14 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import static io.github.maayur28.utils.Constants.CONST_REQUEST_ID;
-import static io.github.maayur28.utils.Constants.RabbitMQ_EXCHANGE.CONST_RABBIT_MQ_NOTIFICATION_EXCHANGE;
+import static io.github.maayur28.utils.Constants.RabbitMQEXCHANGE.CONST_RABBIT_MQ_NOTIFICATION_EXCHANGE;
 import static io.github.maayur28.utils.Constants.RoutingKeys.CONST_BROADCAST_MESSAGE_ROUTING_KEY;
 import static io.github.maayur28.utils.Constants.RoutingKeys.CONST_SEND_MESSAGE_ROUTING_KEY;
 
 @Service
 public class RabbitMQServiceHelper {
 
-    private final Logger logger = LoggerFactory.getLogger(RabbitMQServiceHelper.class);
+    private static final Logger logger = LoggerFactory.getLogger(RabbitMQServiceHelper.class);
     private final RabbitTemplate rabbitTemplate;
 
     public RabbitMQServiceHelper(RabbitTemplate rabbitTemplate) {

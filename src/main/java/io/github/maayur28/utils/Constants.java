@@ -36,13 +36,20 @@ public final class Constants {
     public static final String CONST_FEED_SCHEDULER_INDEX_ROUTING_KEY = "feedSchedulerIndex";
     public static final String CONST_PRIORITY_THREE = "3";
     public static final String CONST_PRIORITY_TWO = "2";
+    public static final String CONST_PARAMETER_PREFIX = "PARAMETER_PREFIX";
 
-    public static final class RabbitMQ_EXCHANGE {
+    public static final class RabbitMQEXCHANGE {
+        private RabbitMQEXCHANGE() {
+        }
+
         public static final String CONST_RABBIT_MQ_NOTIFICATION_EXCHANGE = "notification";
         public static final String CONST_RABBIT_MQ_FEED_SERVICE_EXCHANGE = "feedservice";
     }
 
-    public final class RoutingKeys {
+    public static final class RoutingKeys {
+        private RoutingKeys() {
+        }
+
         public static final String CONST_SAVE_PRODUCT_DETAILS_ROUTING_KEY = "saveProductDetails";
         public static final String CONST_SAVE_PRICE_HISTORY_ROUTING_KEY = "savePriceHistory";
         public static final String CONST_UPDATE_PRODUCT_DETAILS_ROUTING_KEY = "updateProductDetails";
