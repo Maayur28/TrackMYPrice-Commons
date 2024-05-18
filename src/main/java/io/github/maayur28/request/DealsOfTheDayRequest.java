@@ -56,4 +56,6 @@ public class DealsOfTheDayRequest {
     private String url;
 
     private DealType dealType;
+
+    private String code;
 }

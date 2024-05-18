@@ -15,6 +15,8 @@ public class SearchResponseModel {
     @NotEmpty
     private String title;
 
+    private String code;
+
     @NotEmpty
     @Pattern(regexp = "https://.*")
     private String image;

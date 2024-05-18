@@ -19,7 +19,7 @@ public class AlertModel {
 
     private String alertDate;
 
-    private String currentPrice;
+    private BigDecimal currentPrice;
 
     private String currentDate;
 
@@ -28,4 +28,6 @@ public class AlertModel {
     private String domain;
 
     private String url;
+
+    private String code;
 }
