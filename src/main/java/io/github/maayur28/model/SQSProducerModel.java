@@ -18,4 +18,5 @@ public class SQSProducerModel {
     private String search;
     private String domain;
     private String url;
+    private String code;
 }

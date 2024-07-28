@@ -55,4 +55,6 @@ public class DealsOfTheDayModel {
     private String url;
 
     private DealType dealType;
+
+    private String code;
 }

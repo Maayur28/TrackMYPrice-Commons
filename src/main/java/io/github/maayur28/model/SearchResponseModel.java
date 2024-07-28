@@ -42,7 +42,8 @@ public class SearchResponseModel {
                                @JsonProperty("discountPrice") BigDecimal discountPrice,
                                @JsonProperty("originalPrice") BigDecimal originalPrice,
                                @JsonProperty("domain") String domain,
-                               @JsonProperty("url") String url) {
+                               @JsonProperty("url") String url,
+                               @JsonProperty("code") String code) {
         this.title = title;
         this.image = image;
         this.rating = rating;
@@ -50,5 +51,6 @@ public class SearchResponseModel {
         this.originalPrice = originalPrice;
         this.domain = domain;
         this.url = url;
+        this.code = code;
     }
 }
