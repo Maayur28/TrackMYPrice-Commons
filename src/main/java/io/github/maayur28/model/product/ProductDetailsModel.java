@@ -21,8 +21,6 @@ public class ProductDetailsModel {
 
     private long sequenceId;
 
-    private String code;
-
     @NotEmpty
     private String title;
 
