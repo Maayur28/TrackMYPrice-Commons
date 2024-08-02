@@ -1,33 +1,25 @@
 package io.github.maayur28.entity;
 
-import io.github.maayur28.model.PriceMapDTO;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "PriceHistory")
+@DynamoDBTable(tableName = "PriceHistory")
 public class PriceHistoryEntity {
 
-    @Id
+    @DynamoDBHashKey(attributeName = "productId")
     private String productId;
 
-    private String url;
+    @DynamoDBRangeKey(attributeName = "logTimeStamp")
+    private String logTimeStamp;
 
-    private List<PriceMapDTO> price;
+    @DynamoDBAttribute(attributeName = "price")
+    private BigDecimal price;
 
-    private String createdAt;
-
-    private String updatedAt;
-
-    @Indexed
-    private String lastScrapAt;
 }
-

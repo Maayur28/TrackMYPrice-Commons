@@ -1,6 +1,5 @@
 package io.github.maayur28.model.pricehistory;
 
-import io.github.maayur28.model.PriceMapDTO;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +16,7 @@ public class PriceHistoryRequestModel {
 
     private String url;
 
-    private List<PriceMapDTO> price;
+    private List<PriceHistoryModel> price;
 
     @NotEmpty
     private String createdAt;

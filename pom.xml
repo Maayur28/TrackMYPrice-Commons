@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.github.maayur28</groupId>
     <artifactId>trackmyprice-commons</artifactId>
-    <version>1.1.4</version>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
 
     <name>trackmyprice-commons</name>
@@ -66,6 +66,12 @@
             <artifactId>cloudwatch</artifactId>
             <version>2.25.17</version>
         </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-dynamodb</artifactId>
+            <version>1.12.765</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
