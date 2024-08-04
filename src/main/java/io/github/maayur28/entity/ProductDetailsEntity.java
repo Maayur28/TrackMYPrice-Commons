@@ -1,7 +1,5 @@
 package io.github.maayur28.entity;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
-import io.github.maayur28.converter.RatingConverter;
 import io.github.maayur28.model.Rating;
 import io.github.maayur28.model.product.ProductDetailsModel;
 import jakarta.validation.constraints.NotEmpty;
@@ -18,58 +16,61 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Document(collection = "ProductDetails")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@DynamoDBTable(tableName = "ProductDetails")
 public class ProductDetailsEntity {
 
-    @DynamoDBHashKey(attributeName = "productId")
+    @Id
     private String productId;
 
-    @DynamoDBAttribute(attributeName = "title")
+    @Indexed(unique = true)
+    private long sequenceId;
+
+    @NotEmpty(message = "Title is required")
     private String title;
 
-    @DynamoDBAttribute(attributeName = "discountPrice")
+    @NotNull(message = "Discount price is required")
+    @Positive(message = "Discount price must be greater than zero")
     private BigDecimal discountPrice;
 
-    @DynamoDBAttribute(attributeName = "originalPrice")
+    @NotNull(message = "Original price is required")
+    @Positive(message = "Original price must be greater than zero")
     private BigDecimal originalPrice;
 
-    @DynamoDBAttribute(attributeName = "image")
+    @NotEmpty(message = "Image URL is required")
+    @Pattern(regexp = "https://.*", message = "Image URL must start with 'https://'")
     private String image;
 
-    @DynamoDBAttribute(attributeName = "subImages")
     private List<String> subImages;
 
-    @DynamoDBAttribute(attributeName = "badge")
     private String badge;
 
-    @DynamoDBTypeConverted(converter = RatingConverter.class)
-    @DynamoDBAttribute(attributeName = "rating")
     private Rating rating;
 
-    @DynamoDBAttribute(attributeName = "traits")
     private List<String> traits;
 
-    @DynamoDBAttribute(attributeName = "domain")
+    @NotEmpty(message = "Domain is required")
+    @Pattern(regexp = "AMAZON|FLIPKART", message = "Domain must be 'AMAZON' or 'FLIPKART'")
     private String domain;
 
-    @DynamoDBAttribute(attributeName = "url")
+    @NotEmpty(message = "URL is required")
+    @Pattern(regexp = "https://.*", message = "URL must start with 'https://'")
     private String url;
 
-    @DynamoDBAttribute(attributeName = "createdAt")
     private String createdAt;
 
-    @DynamoDBRangeKey(attributeName = "updatedAt")
     private String updatedAt;
 
-    @DynamoDBAttribute(attributeName = "inStock")
+    private String lastScrapAt;
+
     private Boolean inStock;
 
     public ProductDetailsModel toProductDetailsModel() {
         ProductDetailsModel response = new ProductDetailsModel();
         response.setProductId(this.getProductId());
+        response.setSequenceId(this.getSequenceId());
         response.setTitle(this.getTitle());
         response.setDiscountPrice(this.getDiscountPrice());
         response.setOriginalPrice(this.getOriginalPrice());

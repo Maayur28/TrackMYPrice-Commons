@@ -1,40 +1,42 @@
 package io.github.maayur28.entity;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 
+@Document(collection = "Alerts")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@DynamoDBTable(tableName = "PriceAlert")
 public class PriceAlertEntity {
 
-    @DynamoDBHashKey(attributeName = "email")
-    private String email;
+    @Id
+    private String alertId;
 
-    @DynamoDBIndexHashKey(globalSecondaryIndexName = "productIdIndex", attributeName = "productId")
+    @NotEmpty
     private String productId;
 
-    @DynamoDBAttribute(attributeName = "alertPrice")
+    @NotEmpty
+    private String email;
+
+    @NotNull
+    @Positive
     private BigDecimal alertPrice;
 
-    @DynamoDBAttribute(attributeName = "lastEmailSentPrice")
     private BigDecimal lastEmailSentPrice;
 
-    @DynamoDBRangeKey(attributeName = "alertDate")
     private String alertDate;
 
-    @DynamoDBAttribute(attributeName = "priceAlert")
     private Boolean priceAlert;
 
-    @DynamoDBAttribute(attributeName = "inStockAlert")
     private Boolean inStockAlert;
 
-    @DynamoDBIndexHashKey(globalSecondaryIndexName = "priorityIndex", attributeName = "priority")
     private Integer priority = 3;
 }

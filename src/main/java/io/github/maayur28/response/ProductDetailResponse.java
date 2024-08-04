@@ -24,8 +24,6 @@ public class ProductDetailResponse {
     @NotEmpty
     private String title;
 
-    private String code;
-
     @Positive
     @Size(min = 1)
     @Pattern(regexp = "\\d+(\\.\\d{1,2})?")
