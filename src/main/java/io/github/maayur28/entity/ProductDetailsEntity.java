@@ -63,8 +63,6 @@ public class ProductDetailsEntity {
 
     private String updatedAt;
 
-    private String lastScrapAt;
-
     private Boolean inStock;
 
     public ProductDetailsModel toProductDetailsModel() {
