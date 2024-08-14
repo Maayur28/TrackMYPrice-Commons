@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -23,7 +24,15 @@ import java.util.List;
 public class ProductDetailsEntity {
 
     @Id
+    private String id;
+
+    @Indexed(unique = true)
     private String productId;
+
+    @NotEmpty(message = "URL is required")
+    @Pattern(regexp = "https://.*", message = "URL must start with 'https://'")
+    @Indexed(unique = true)
+    private String url;
 
     @Indexed(unique = true)
     private long sequenceId;
@@ -55,15 +64,14 @@ public class ProductDetailsEntity {
     @Pattern(regexp = "AMAZON|FLIPKART", message = "Domain must be 'AMAZON' or 'FLIPKART'")
     private String domain;
 
-    @NotEmpty(message = "URL is required")
-    @Pattern(regexp = "https://.*", message = "URL must start with 'https://'")
-    private String url;
-
     private String createdAt;
 
     private String updatedAt;
 
     private Boolean inStock;
+
+    @Version
+    private Long version;
 
     public ProductDetailsModel toProductDetailsModel() {
         ProductDetailsModel response = new ProductDetailsModel();

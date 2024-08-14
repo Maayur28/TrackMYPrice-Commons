@@ -30,6 +30,4 @@ public class DealsModel {
     private String domain;
 
     private String url;
-
-    private String code;
 }
