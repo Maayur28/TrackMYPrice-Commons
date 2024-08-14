@@ -13,6 +13,8 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AlertModel {
 
+    private String productId;
+
     private String title;
 
     private BigDecimal alertPrice;
@@ -28,6 +30,4 @@ public class AlertModel {
     private String domain;
 
     private String url;
-
-    private String code;
 }

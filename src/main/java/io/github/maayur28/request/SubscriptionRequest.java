@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SubscriptionRequest {
 
+    private String productId;
+
     private String url;
 
     private String email;
