@@ -37,6 +37,7 @@ public final class Constants {
     public static final String CONST_PRIORITY_THREE = "3";
     public static final String CONST_PRIORITY_TWO = "2";
     public static final String CONST_PARAMETER_PREFIX = "PARAMETER_PREFIX";
+    public static final String CONST_LOOKUP_ID = "lookup_";
 
     public static final class RabbitMQEXCHANGE {
         private RabbitMQEXCHANGE() {
