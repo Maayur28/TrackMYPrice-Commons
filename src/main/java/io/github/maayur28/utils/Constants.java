@@ -32,8 +32,6 @@ public final class Constants {
     public static final String CONST_TMYP_URL = "https://tmyp.in";
     public static final String CONST_DEFAULT_TIME_ZONE = "Asia/Kolkata";
     public static final String CONST_TOTAL_PRODUCT_COUNT = "TOTAL_PRODUCT_COUNT";
-    public static final String CONST_PRIORITY_SCRAP_ROUTING_KEY = "priorityScrap";
-    public static final String CONST_FEED_SCHEDULER_INDEX_ROUTING_KEY = "feedSchedulerIndex";
     public static final String CONST_PRIORITY_THREE = "3";
     public static final String CONST_PRIORITY_TWO = "2";
     public static final String CONST_PARAMETER_PREFIX = "PARAMETER_PREFIX";
@@ -59,6 +57,11 @@ public final class Constants {
         public static final String CONST_CONTACT_US_ROUTING_KEY = "contactUsMail";
         public static final String CONST_BROADCAST_MESSAGE_ROUTING_KEY = "broadcastMessage";
         public static final String CONST_SEND_MESSAGE_ROUTING_KEY = "sendMessage";
+        public static final String CONST_PRIORITY_SCRAP_ROUTING_KEY = "priorityScrap";
+        public static final String CONST_FEED_SCHEDULER_INDEX_ROUTING_KEY = "feedSchedulerIndex";
+        public static final String CONST_CACHE_CLEAR_ROUTING_KEY = "cacheClear";
+        public static final String CONST_PROCESS_PRODUCT_DETAILS_ROUTING_KEY = "processProductDetails";
+
     }
 
 
