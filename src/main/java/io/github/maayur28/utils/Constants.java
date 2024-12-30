@@ -61,6 +61,7 @@ public final class Constants {
         public static final String CONST_FEED_SCHEDULER_INDEX_ROUTING_KEY = "feedSchedulerIndex";
         public static final String CONST_CACHE_CLEAR_ROUTING_KEY = "cacheClear";
         public static final String CONST_PROCESS_PRODUCT_DETAILS_ROUTING_KEY = "processProductDetails";
+        public static final String CONST_PROCESS_FAILED_PRODUCT_DETAILS_ROUTING_KEY = "processFailedProductDetails";
 
     }
 
