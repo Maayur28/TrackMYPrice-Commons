@@ -49,20 +49,20 @@ public final class Constants {
         private RoutingKeys() {
         }
 
-        public static final String CONST_SAVE_PRODUCT_DETAILS_ROUTING_KEY = "saveProductDetails";
-        public static final String CONST_SAVE_PRICE_HISTORY_ROUTING_KEY = "savePriceHistory";
-        public static final String CONST_UPDATE_PRODUCT_DETAILS_ROUTING_KEY = "updateProductDetails";
-        public static final String CONST_UPDATE_PRICE_HISTORY_ROUTING_KEY = "updatePriceHistory";
-        public static final String CONST_SAVE_IP_INFO_DETAILS_ROUTING_KEY = "saveIpInfoDetails";
-        public static final String CONST_CONTACT_US_ROUTING_KEY = "contactUsMail";
-        public static final String CONST_BROADCAST_MESSAGE_ROUTING_KEY = "broadcastMessage";
-        public static final String CONST_SEND_MESSAGE_ROUTING_KEY = "sendMessage";
-        public static final String CONST_PRIORITY_SCRAP_ROUTING_KEY = "priorityScrap";
-        public static final String CONST_FEED_SCHEDULER_INDEX_ROUTING_KEY = "feedSchedulerIndex";
         public static final String CONST_CACHE_CLEAR_ROUTING_KEY = "cacheClear";
-        public static final String CONST_PROCESS_PRODUCT_DETAILS_ROUTING_KEY = "processProductDetails";
+        public static final String CONST_FEED_SCHEDULER_INDEX_ROUTING_KEY = "feedSchedulerIndex";
         public static final String CONST_PROCESS_FAILED_PRODUCT_DETAILS_ROUTING_KEY = "processFailedProductDetails";
-
+        public static final String CONST_PROCESS_PRODUCT_DETAILS_ROUTING_KEY = "processProductDetails";
+        public static final String CONST_SAVE_IP_INFO_DETAILS_ROUTING_KEY = "saveIpInfoDetails";
+        public static final String CONST_SAVE_PRICE_HISTORY_ROUTING_KEY = "savePriceHistory";
+        public static final String CONST_SAVE_PRODUCT_DETAILS_ROUTING_KEY = "saveProductDetails";
+        public static final String CONST_BROADCAST_MESSAGE_ROUTING_KEY = "broadcastMessage";
+        public static final String CONST_CONTACT_US_ROUTING_KEY = "contactUsMail";
+        public static final String CONST_FORGET_PASSWORD_MAIL_ROUTING_KEY = "forgetPasswordMail";
+        public static final String CONST_SEND_MESSAGE_ROUTING_KEY = "sendMessage";
+        public static final String CONST_PRICE_DROPPED_NOTIFICATION_ROUTING_KEY = "sendPriceDroppedNotification";
+        public static final String CONST_SIGN_UP_VERIFICATION_MAIL_ROUTING_KEY = "signUpVerificationMail";
+        public static final String CONST_VERIFICATION_SUCCESS_MAIL_ROUTING_KEY = "verificationSuccessMail";
     }
 
 
