@@ -63,6 +63,7 @@ public final class Constants {
         public static final String CONST_PRICE_DROPPED_NOTIFICATION_ROUTING_KEY = "sendPriceDroppedNotification";
         public static final String CONST_SIGN_UP_VERIFICATION_MAIL_ROUTING_KEY = "signUpVerificationMail";
         public static final String CONST_VERIFICATION_SUCCESS_MAIL_ROUTING_KEY = "verificationSuccessMail";
+        public static final String CONST_SIGN_IN_OTP_VERIFICATION_MAIL_ROUTING_KEY = "signInOTPVerificationMail";
     }
 
 
