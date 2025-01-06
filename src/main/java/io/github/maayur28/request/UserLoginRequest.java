@@ -14,6 +14,8 @@ public class UserLoginRequest {
 
     private String password;
 
+    private String otp;
+
     private boolean rememberMe;
 
     private IPInfoDTO loginInfo;

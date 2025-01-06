@@ -45,6 +45,11 @@ public class RedisServiceHelper {
         commands.set(key, value);
     }
 
+    public void setWithExpiry(String key, String value, long ttl) {
+        RedisCommands<String, String> commands = redisConnection.sync();
+        commands.setex(key, ttl, value); // Set the key with a TTL
+    }
+
     public String get(String key) {
         RedisCommands<String, String> commands = redisConnection.sync();
         return commands.get(key);
