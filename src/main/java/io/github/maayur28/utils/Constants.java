@@ -43,6 +43,7 @@ public final class Constants {
 
         public static final String CONST_RABBIT_MQ_NOTIFICATION_EXCHANGE = "notification";
         public static final String CONST_RABBIT_MQ_FEED_SERVICE_EXCHANGE = "feedservice";
+        public static final String CONST_RABBIT_MQ_SCRAPPER_EXCHANGE = "scrapper";
     }
 
     public static final class RoutingKeys {
@@ -64,6 +65,7 @@ public final class Constants {
         public static final String CONST_SIGN_UP_VERIFICATION_MAIL_ROUTING_KEY = "signUpVerificationMail";
         public static final String CONST_VERIFICATION_SUCCESS_MAIL_ROUTING_KEY = "verificationSuccessMail";
         public static final String CONST_SIGN_IN_OTP_VERIFICATION_MAIL_ROUTING_KEY = "signInOTPVerificationMail";
+        public static final String CONST_SCRAP_PRODUCT_DETAILS = "scrapProductDetails";
     }
 
 
