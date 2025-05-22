@@ -20,6 +20,11 @@ public class RedisServiceHelper {
         this.redisConnection = redisConnection;
     }
 
+    public static String serializeEntity(DealsOfTheDayModel model) {
+        Gson gson = new Gson();
+        return gson.toJson(model);
+    }
+
     public boolean updateKeyWithOptimisticLocking(String key, long value) {
         try {
             RedisCommands<String, String> commands = redisConnection.sync();
@@ -53,11 +58,6 @@ public class RedisServiceHelper {
     public String get(String key) {
         RedisCommands<String, String> commands = redisConnection.sync();
         return commands.get(key);
-    }
-
-    public static String serializeEntity(DealsOfTheDayModel model) {
-        Gson gson = new Gson();
-        return gson.toJson(model);
     }
 
     public void removeAllKeys() {

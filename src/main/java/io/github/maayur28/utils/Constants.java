@@ -3,18 +3,8 @@ package io.github.maayur28.utils;
 import java.util.regex.Pattern;
 
 public final class Constants {
-    private Constants() {
-    }
-
     public static final String CONST_REQUEST_ID = "requestId";
     public static final String IP_ADDRESS = "ipAddress";
-    static final String[] HEADERS_TO_TRY = {
-            "X-Forwarded-For",
-            "Proxy-Client-IP",
-            "WL-Proxy-Client-IP",
-            "HTTP_CLIENT_IP",
-            "HTTP_X_FORWARDED_FOR"
-    };
     public static final String CONST_AMAZON = "AMAZON";
     public static final String CONST_FLIPKART = "FLIPKART";
     public static final String CONST_AMAZON_URL_INITIAL = "https://www.amazon.in/dp/";
@@ -36,20 +26,25 @@ public final class Constants {
     public static final String CONST_PRIORITY_TWO = "2";
     public static final String CONST_PARAMETER_PREFIX = "PARAMETER_PREFIX";
     public static final String CONST_LOOKUP_ID = "lookup_";
+    static final String[] HEADERS_TO_TRY = {
+            "X-Forwarded-For",
+            "Proxy-Client-IP",
+            "WL-Proxy-Client-IP",
+            "HTTP_CLIENT_IP",
+            "HTTP_X_FORWARDED_FOR"
+    };
+    private Constants() {
+    }
 
     public static final class RabbitMQEXCHANGE {
-        private RabbitMQEXCHANGE() {
-        }
-
         public static final String CONST_RABBIT_MQ_NOTIFICATION_EXCHANGE = "notification";
         public static final String CONST_RABBIT_MQ_FEED_SERVICE_EXCHANGE = "feedservice";
         public static final String CONST_RABBIT_MQ_SCRAPPER_EXCHANGE = "scrapper";
+        private RabbitMQEXCHANGE() {
+        }
     }
 
     public static final class RoutingKeys {
-        private RoutingKeys() {
-        }
-
         public static final String CONST_CACHE_CLEAR_ROUTING_KEY = "cacheClear";
         public static final String CONST_FEED_SCHEDULER_INDEX_ROUTING_KEY = "feedSchedulerIndex";
         public static final String CONST_PROCESS_FAILED_PRODUCT_DETAILS_ROUTING_KEY = "processFailedProductDetails";
@@ -66,6 +61,8 @@ public final class Constants {
         public static final String CONST_VERIFICATION_SUCCESS_MAIL_ROUTING_KEY = "verificationSuccessMail";
         public static final String CONST_SIGN_IN_OTP_VERIFICATION_MAIL_ROUTING_KEY = "signInOTPVerificationMail";
         public static final String CONST_SCRAP_PRODUCT_DETAILS = "scrapProductDetails";
+        private RoutingKeys() {
+        }
     }
 
 

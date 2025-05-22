@@ -1,6 +1,5 @@
 package io.github.maayur28.response;
 
-import io.github.maayur28.model.SearchResponseModel;
 import io.github.maayur28.model.SearchSuggestionModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
