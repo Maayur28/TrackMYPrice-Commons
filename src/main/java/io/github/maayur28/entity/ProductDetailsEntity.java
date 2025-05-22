@@ -73,7 +73,7 @@ public class ProductDetailsEntity {
     @Version
     private Long version;
 
-    public ProductDetailsModel toProductDetailsModel() {
+    public final ProductDetailsModel toProductDetailsModel() {
         ProductDetailsModel response = new ProductDetailsModel();
         response.setProductId(this.getProductId());
         response.setSequenceId(this.getSequenceId());

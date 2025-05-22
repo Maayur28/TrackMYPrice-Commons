@@ -14,9 +14,9 @@ import static io.github.maayur28.utils.Constants.CONST_AWS_SQS_URL;
 public class SQSServiceHelper {
 
     protected final Logger logger = LoggerFactory.getLogger(SQSServiceHelper.class);
+    private final SqsClient sqsClient;
     @Value("${spring.aws.account}")
     private String awsAccount;
-    private final SqsClient sqsClient;
 
     public SQSServiceHelper(SqsClient sqsClient) {
         this.sqsClient = sqsClient;
