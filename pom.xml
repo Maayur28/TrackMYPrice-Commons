@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.github.maayur28</groupId>
     <artifactId>trackmyprice-commons</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <packaging>jar</packaging>
 
     <name>trackmyprice-commons</name>
@@ -33,7 +33,7 @@
         <logback.version>1.5.18</logback.version>
         <lombok.version>1.18.38</lombok.version>
         <jackson-databind.version>2.19.0</jackson-databind.version>
-        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <commons-lang3.version>3.18.0</commons-lang3.version>
         <jakarta.validation.version>3.1.0</jakarta.validation.version>
         <spring-boot-starter-test.version>3.4.5</spring-boot-starter-test.version>
         <spring-boot-starter-aop.version>3.4.5</spring-boot-starter-aop.version>
@@ -205,7 +205,7 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
-                            <keyname>0x3EA1C711</keyname>
+                            <keyname>A135A1C27D49571303CAF08FB1B47D15728861A5</keyname>
                             <gpgArguments>
                                 <arg>--pinentry-mode</arg>
                                 <arg>loopback</arg>
