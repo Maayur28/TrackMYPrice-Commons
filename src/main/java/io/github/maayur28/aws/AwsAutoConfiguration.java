@@ -33,11 +33,7 @@ public class AwsAutoConfiguration {
     public SqsClient sqsClient() {
         return SqsClient.builder()
                 .region(REGION)
-                .credentialsProvider(
-                        ProfileCredentialsProvider.builder()
-                                .profileName(System.getenv().getOrDefault("AWS_PROFILE", LOCAL_DEV_DEFAULT_PROFILE))
-                                .build()
-                )
+                .credentialsProvider(creds())
                 .build();
     }
 
@@ -46,11 +42,7 @@ public class AwsAutoConfiguration {
     public SsmClient ssmClient() {
         return SsmClient.builder()
                 .region(REGION)
-                .credentialsProvider(
-                        ProfileCredentialsProvider.builder()
-                                .profileName(System.getenv().getOrDefault("AWS_PROFILE", LOCAL_DEV_DEFAULT_PROFILE))
-                                .build()
-                )
+                .credentialsProvider(creds())
                 .build();
     }
 
@@ -59,11 +51,7 @@ public class AwsAutoConfiguration {
     public CloudWatchClient cloudWatchClient() {
         return CloudWatchClient.builder()
                 .region(REGION)
-                .credentialsProvider(
-                        ProfileCredentialsProvider.builder()
-                                .profileName(System.getenv().getOrDefault("AWS_PROFILE", LOCAL_DEV_DEFAULT_PROFILE))
-                                .build()
-                )
+                .credentialsProvider(creds())
                 .build();
     }
 
@@ -72,11 +60,7 @@ public class AwsAutoConfiguration {
     public LambdaClient lambdaClient() {
         return LambdaClient.builder()
                 .region(REGION)
-                .credentialsProvider(
-                        ProfileCredentialsProvider.builder()
-                                .profileName(System.getenv().getOrDefault("AWS_PROFILE", LOCAL_DEV_DEFAULT_PROFILE))
-                                .build()
-                )
+                .credentialsProvider(creds())
                 .build();
     }
 
@@ -85,11 +69,7 @@ public class AwsAutoConfiguration {
     public LambdaAsyncClient lambdaAsyncClient() {
         return LambdaAsyncClient.builder()
                 .region(REGION)
-                .credentialsProvider(
-                        ProfileCredentialsProvider.builder()
-                                .profileName(System.getenv().getOrDefault("AWS_PROFILE", LOCAL_DEV_DEFAULT_PROFILE))
-                                .build()
-                )
+                .credentialsProvider(creds())
                 .build();
     }
 
