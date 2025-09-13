@@ -13,7 +13,7 @@
 
     <groupId>io.github.maayur28</groupId>
     <artifactId>trackmyprice-commons</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.3</version>
     <packaging>jar</packaging>
 
     <name>trackmyprice-commons</name>
@@ -96,6 +96,18 @@
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>ssm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>lambda</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>sso</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>ssooidc</artifactId>
         </dependency>
 
         <dependency>

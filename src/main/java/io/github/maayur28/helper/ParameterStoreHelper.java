@@ -15,7 +15,7 @@ public class ParameterStoreHelper {
         this.ssmClient = ssmClient;
     }
 
-    public String getParameterValue(String key) {
+    public final String getParameterValue(String key) {
         try {
             GetParameterRequest request = GetParameterRequest.builder()
                     .name(key)

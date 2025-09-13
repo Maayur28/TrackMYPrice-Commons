@@ -13,19 +13,17 @@ import static io.github.maayur28.utils.Constants.CONST_AWS_SQS_URL;
 @Service
 public class SQSServiceHelper {
 
-    protected final Logger logger = LoggerFactory.getLogger(SQSServiceHelper.class);
+    private static final Logger logger = LoggerFactory.getLogger(SQSServiceHelper.class);
     private final SqsClient sqsClient;
-    @Value("${spring.aws.account}")
-    private String awsAccount;
 
     public SQSServiceHelper(SqsClient sqsClient) {
         this.sqsClient = sqsClient;
     }
 
-    public SendMessageResponse publishMessage(final String CONST_SQS_PRODUCER, final String message, final String messageGroupId) {
+    public final SendMessageResponse publishMessage(final String awsSqsURI, final String message, final String messageGroupId) {
         logger.info("SQS publish message: {} and messageGroupId: {}", message, messageGroupId);
         SendMessageRequest sendMessageRequest = SendMessageRequest.builder()
-                .queueUrl(CONST_AWS_SQS_URL + awsAccount + CONST_SQS_PRODUCER)
+                .queueUrl(awsSqsURI)
                 .messageBody(message)
                 .messageGroupId(messageGroupId)
                 .build();
