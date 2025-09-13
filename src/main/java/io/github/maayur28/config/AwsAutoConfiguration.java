@@ -1,4 +1,4 @@
-package io.github.maayur28.aws;
+package io.github.maayur28.config;
 
 import io.github.maayur28.metricsprovider.CloudWatchMetricsProvider;
 import io.github.maayur28.metricsprovider.MetricsProvider;
@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
-import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.cloudwatch.CloudWatchClient;
 import software.amazon.awssdk.services.lambda.LambdaAsyncClient;
