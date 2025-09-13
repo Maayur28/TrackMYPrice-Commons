@@ -1,22 +1,32 @@
 package io.github.maayur28.helper;
 
-import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagement;
-import com.amazonaws.services.simplesystemsmanagement.model.GetParameterRequest;
-import com.amazonaws.services.simplesystemsmanagement.model.GetParameterResult;
 import org.springframework.stereotype.Service;
+import software.amazon.awssdk.services.ssm.SsmClient;
+import software.amazon.awssdk.services.ssm.model.GetParameterRequest;
+import software.amazon.awssdk.services.ssm.model.GetParameterResponse;
+import software.amazon.awssdk.services.ssm.model.SsmException;
 
 @Service
 public class ParameterStoreHelper {
 
-    private final AWSSimpleSystemsManagement ssmClient;
+    private final SsmClient ssmClient;
 
-    public ParameterStoreHelper(AWSSimpleSystemsManagement ssmClient) {
+    public ParameterStoreHelper(SsmClient ssmClient) {
         this.ssmClient = ssmClient;
     }
 
     public String getParameterValue(String key) {
-        GetParameterRequest parameterRequest = new GetParameterRequest().withName(key).withWithDecryption(true);
-        GetParameterResult parameterResult = ssmClient.getParameter(parameterRequest);
-        return parameterResult.getParameter().getValue();
+        try {
+            GetParameterRequest request = GetParameterRequest.builder()
+                    .name(key)
+                    .withDecryption(true)
+                    .build();
+
+            GetParameterResponse resp = ssmClient.getParameter(request);
+            return resp.parameter().value();
+        } catch (SsmException e) {
+            // log or rethrow as your app's exception
+            throw e;
+        }
     }
 }

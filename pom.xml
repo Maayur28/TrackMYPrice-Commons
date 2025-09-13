@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.5</version>
         <relativePath/>
     </parent>
+
     <groupId>io.github.maayur28</groupId>
     <artifactId>trackmyprice-commons</artifactId>
-    <version>2.0.1</version>
+    <version>3.0.0</version>
     <packaging>jar</packaging>
 
     <name>trackmyprice-commons</name>
-    <description>It is a common package for all trackmyprice services</description>
+    <description>Common package for all TrackMYPrice services</description>
     <url>https://github.com/Maayur28/TrackMYPrice-Commons.git</url>
 
     <licenses>
@@ -27,7 +30,7 @@
     <properties>
         <java.version>24</java.version>
         <spring-boot.version>3.4.5</spring-boot.version>
-        <lettuce.version>6.6.0.RELEASE</lettuce.version>
+        <lettuce.version>6.8.1.RELEASE</lettuce.version>
         <gson.version>2.13.1</gson.version>
         <logstash-logback-encoder.version>8.1</logstash-logback-encoder.version>
         <logback.version>1.5.18</logback.version>
@@ -38,13 +41,36 @@
         <spring-boot-starter-test.version>3.4.5</spring-boot-starter-test.version>
         <spring-boot-starter-aop.version>3.4.5</spring-boot-starter-aop.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
         <central-publishing-maven-plugin.version>0.3.0</central-publishing-maven-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
         <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
         <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
+        <aws.sdk2.version>2.33.4</aws.sdk2.version>
+        <netty.version>4.1.127.Final</netty.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- AWS SDK v2 BOM -->
+            <dependency>
+                <groupId>software.amazon.awssdk</groupId>
+                <artifactId>bom</artifactId>
+                <version>${aws.sdk2.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Netty BOM to align transitive versions -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>${netty.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -57,21 +83,21 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-ssm</artifactId>
-            <version>1.12.783</version>
-        </dependency>
+
+        <!-- ✅ Use AWS SDK v2 only -->
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>sqs</artifactId>
-            <version>2.31.45</version>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>cloudwatch</artifactId>
-            <version>2.31.45</version>
         </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>ssm</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
@@ -149,7 +175,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.38</version>
+                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -236,6 +262,7 @@
             </resource>
         </resources>
     </build>
+
 
     <distributionManagement>
         <snapshotRepository>
