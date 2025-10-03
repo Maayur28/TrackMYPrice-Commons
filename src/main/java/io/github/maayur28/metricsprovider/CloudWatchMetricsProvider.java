@@ -22,32 +22,25 @@ public class CloudWatchMetricsProvider implements MetricsProvider {
 
     @Override
     public void incrementCount(String metricName) {
-        try {
-            MetricDatum datum = MetricDatum.builder()
-                    .metricName(metricName)
-                    .value(1.0)
-                    .unit("Count")
-                    .build();
-
-            PutMetricDataRequest request = PutMetricDataRequest.builder()
-                    .namespace(namespace)
-                    .metricData(datum)
-                    .build();
-
-            // Publish the metric to CloudWatch
-            cloudWatchClient.putMetricData(request);
-        } catch (CloudWatchException e) {
-            logger.error("CloudWatchException: {}", e.getMessage());
-        }
+        publishMetric(metricName, 1.0, StandardUnit.COUNT);
     }
 
     @Override
-    public void addTimer(String metricName, long value) {
+    public void addTimer(String metricName, long valueMillis) {
+        publishMetric(metricName, (double) valueMillis, StandardUnit.MILLISECONDS);
+    }
+
+    @Override
+    public void gauge(String metricName, double value) {
+        publishMetric(metricName, value, StandardUnit.COUNT); // Gauge usually uses "Count" or "None"
+    }
+
+    private void publishMetric(String metricName, double value, StandardUnit unit) {
         try {
             MetricDatum datum = MetricDatum.builder()
                     .metricName(metricName)
-                    .value((double) value)
-                    .unit(StandardUnit.MILLISECONDS)
+                    .value(value)
+                    .unit(unit)
                     .build();
 
             PutMetricDataRequest request = PutMetricDataRequest.builder()
@@ -55,10 +48,11 @@ public class CloudWatchMetricsProvider implements MetricsProvider {
                     .metricData(datum)
                     .build();
 
-            // Publish the metric to CloudWatch
             cloudWatchClient.putMetricData(request);
         } catch (CloudWatchException e) {
-            logger.error("CloudWatchException: {}", e.getMessage());
+            logger.error("CloudWatchException while publishing {}: {}", metricName, e.getMessage(), e);
+        } catch (Exception e) {
+            logger.error("Unexpected error while publishing {}: {}", metricName, e.getMessage(), e);
         }
     }
 }
