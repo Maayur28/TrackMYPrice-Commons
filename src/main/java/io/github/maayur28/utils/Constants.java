@@ -61,6 +61,8 @@ public final class Constants {
         public static final String CONST_VERIFICATION_SUCCESS_MAIL_ROUTING_KEY = "verificationSuccessMail";
         public static final String CONST_SIGN_IN_OTP_VERIFICATION_MAIL_ROUTING_KEY = "signInOTPVerificationMail";
         public static final String CONST_SCRAP_PRODUCT_DETAILS = "scrapProductDetails";
+        public static final String CONST_AMAZON_SCRAP_PRODUCT_DETAILS = "amazon_jobs";
+        public static final String CONST_FLIPKART_SCRAP_PRODUCT_DETAILS = "flipkart_jobs";
         private RoutingKeys() {
         }
     }
