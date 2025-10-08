@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import io.github.maayur28.model.DealsOfTheDayModel;
 import io.lettuce.core.KeyValue;
 import io.lettuce.core.RedisCommandTimeoutException;
+import io.lettuce.core.SetArgs;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
 import org.slf4j.Logger;
@@ -79,6 +80,19 @@ public class RedisServiceHelper {
     public boolean setnx(String key, String value) {
         return redisConnection.sync().setnx(key, value);
     }
+
+    /** Atomic: SET key value NX EX seconds → true if set (lock acquired) */
+    public boolean setNxEx(String key, String value, long exSeconds) {
+        String res = redisConnection.sync().set(key, value, SetArgs.Builder.nx().ex(exSeconds));
+        return "OK".equalsIgnoreCase(res);
+    }
+
+    /** TTL in seconds: -2=key doesn't exist, -1=no expire, >=0 seconds left */
+    public long ttl(String key) {
+        Long t = redisConnection.sync().ttl(key);
+        return t == null ? -2L : t;
+    }
+
 
     /** EXPIRE key seconds */
     public void expire(String key, long seconds) {
