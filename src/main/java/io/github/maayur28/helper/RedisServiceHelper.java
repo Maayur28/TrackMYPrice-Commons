@@ -167,4 +167,32 @@ public class RedisServiceHelper {
         String serializedEntity = serializeEntity(entity);
         redisConnection.sync().rpush(CONST_DEALS_OF_THE_DAY, serializedEntity);
     }
+
+    /* ------------ Extra minimal helpers (lists + key check) ------------ */
+
+    /** RPUSH key value [value ...] */
+    public Long rpush(String key, String... values) {
+        return redisConnection.sync().rpush(key, values);
+    }
+
+    /** RPOP key -> null when list is empty */
+    public String rpop(String key) {
+        return redisConnection.sync().rpop(key);
+    }
+
+    /** LRANGE key start stop (inclusive) */
+    public java.util.List<String> lrange(String key, long start, long stop) {
+        return redisConnection.sync().lrange(key, start, stop);
+    }
+
+    /** RPOPLPUSH source destination -> atomically move last elem of source to head of destination */
+    public String rpoplpush(String source, String destination) {
+        return redisConnection.sync().rpoplpush(source, destination);
+    }
+
+    /** EXISTS key -> true if key exists */
+    public boolean exists(String key) {
+        return redisConnection.sync().exists(key) > 0;
+    }
+
 }
