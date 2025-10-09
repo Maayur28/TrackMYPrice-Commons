@@ -101,6 +101,10 @@ public class RedisServiceHelper {
 
     /* ------------ LIST ops for free-index pool ------------ */
 
+    public Long lpos(String key, String element) {
+        return redisConnection.sync().lpos(key, element);
+    }
+
     /** LPUSH key value */
     public void lpush(String key, String value) {
         redisConnection.sync().lpush(key, value);

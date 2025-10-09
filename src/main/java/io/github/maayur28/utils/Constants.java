@@ -63,6 +63,7 @@ public final class Constants {
         public static final String CONST_SCRAP_PRODUCT_DETAILS = "scrapProductDetails";
         public static final String CONST_AMAZON_SCRAP_PRODUCT_DETAILS = "amazon_jobs";
         public static final String CONST_FLIPKART_SCRAP_PRODUCT_DETAILS = "flipkart_jobs";
+        public static final String CONST_SPIN_UP_SELF_SCRAPPER_TEMP_SERVER_ROUTING_KEY = "SpinUPSelfScrapperTempServer";
         private RoutingKeys() {
         }
     }
