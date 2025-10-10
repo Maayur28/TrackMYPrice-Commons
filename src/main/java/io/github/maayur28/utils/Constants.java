@@ -33,6 +33,7 @@ public final class Constants {
             "HTTP_CLIENT_IP",
             "HTTP_X_FORWARDED_FOR"
     };
+    public static final String CONST_SELF_SCRAP_FREE_LIST_TEMP_KEY = "free:selfscrap:%s:temp";
     private Constants() {
     }
 
