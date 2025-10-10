@@ -2,15 +2,14 @@ package io.github.maayur28.helper;
 
 import com.google.gson.Gson;
 import io.github.maayur28.model.DealsOfTheDayModel;
-import io.lettuce.core.KeyValue;
-import io.lettuce.core.RedisCommandTimeoutException;
-import io.lettuce.core.SetArgs;
+import io.lettuce.core.*;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 import static io.github.maayur28.utils.Constants.CONST_DEALS_OF_THE_DAY;
@@ -194,5 +193,47 @@ public class RedisServiceHelper {
     public boolean exists(String key) {
         return redisConnection.sync().exists(key) > 0;
     }
+
+    /**
+     * Delete all keys that start with the given prefix using SCAN in batches.
+     * Uses UNLINK (non-blocking) when useUnlink=true, otherwise DEL.
+     *
+     * @param prefix      e.g. "failed:productId:"
+     * @param batchSize   number of keys to delete per round-trip (e.g. 1000)
+     * @param useUnlink   true => UNLINK (Redis 4+), false => DEL
+     * @return total number of keys deleted
+     */
+    public long deleteKeysByPrefix(String prefix, int batchSize, boolean useUnlink) {
+        final String pattern = prefix.endsWith("*") ? prefix : (prefix + "*");
+        final RedisCommands<String, String> cmd = redisConnection.sync();
+
+        long totalDeleted = 0L;
+        ScanArgs args = ScanArgs.Builder.matches(pattern).limit(batchSize);
+        ScanCursor cursor = ScanCursor.INITIAL;
+
+        try {
+            do {
+                KeyScanCursor<String> scan = cmd.scan(cursor, args);
+                List<String> keys = scan.getKeys();
+
+                if (keys != null && !keys.isEmpty()) {
+                    String[] arr = keys.toArray(new String[0]);
+                    // UNLINK is non-blocking (recommended in prod). Fallback to DEL if needed.
+                    long deleted = useUnlink ? cmd.unlink(arr) : cmd.del(arr);
+                    totalDeleted += deleted;
+                }
+
+                cursor = ScanCursor.of(scan.getCursor());
+            } while (!cursor.isFinished());
+        } catch (RedisCommandTimeoutException e) {
+            logger.error("Timeout while scanning/deleting keys with pattern {}: {}", pattern, e.getMessage());
+        } catch (Exception e) {
+            logger.error("Error while deleting keys with pattern {}: {}", pattern, e.getMessage(), e);
+        }
+
+        logger.info("Deleted {} keys for pattern {}", totalDeleted, pattern);
+        return totalDeleted;
+    }
+
 
 }
