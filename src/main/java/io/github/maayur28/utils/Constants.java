@@ -1,8 +1,11 @@
 package io.github.maayur28.utils;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public final class Constants {
+    public static final List<String> STORES = Arrays.asList("Amazon", "Flipkart");
     public static final String CONST_REQUEST_ID = "requestId";
     public static final String IP_ADDRESS = "ipAddress";
     public static final String CONST_AMAZON = "AMAZON";
@@ -33,7 +36,7 @@ public final class Constants {
             "HTTP_CLIENT_IP",
             "HTTP_X_FORWARDED_FOR"
     };
-    public static final String CONST_SELF_SCRAP_FREE_LIST_TEMP_KEY = "free:selfscrap:%s:temp";
+    public static final String CONST_SELF_SCRAP_FREE_LIST_TEMP_KEY = "%s:FreeSelfScrapTemp";
     public static final String CONST_FAILED_PRODUCTS_BY_RETRY_COUNTER_KEY = "failedProductsByRetryCount"; // one Redis key
 
     private Constants() {
