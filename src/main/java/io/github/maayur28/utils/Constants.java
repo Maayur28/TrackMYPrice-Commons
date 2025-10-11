@@ -34,6 +34,8 @@ public final class Constants {
             "HTTP_X_FORWARDED_FOR"
     };
     public static final String CONST_SELF_SCRAP_FREE_LIST_TEMP_KEY = "free:selfscrap:%s:temp";
+    public static final String CONST_FAILED_PRODUCTS_BY_RETRY_COUNTER_KEY = "failedProductsByRetryCount"; // one Redis key
+
     private Constants() {
     }
 
