@@ -255,7 +255,7 @@ public class RedisServiceHelper {
      * Increment an integer counter stored as a field inside a Redis Hash.
      * Equivalent to HINCRBY hashKey field delta.
      */
-    public Long hincr(String hashKey, String field, long delta) {
+    public Long incr(String hashKey, String field, long delta) {
         return redisConnection.sync().hincrby(hashKey, field, delta);
     }
 
