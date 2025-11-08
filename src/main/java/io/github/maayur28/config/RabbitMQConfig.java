@@ -3,6 +3,7 @@ package io.github.maayur28.config;
 import jakarta.annotation.PreDestroy;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +33,14 @@ public class RabbitMQConfig {
             }
         }
         return connectionFactoryRef.get();
+    }
+
+    @Bean
+    public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
+        // If you ONLY want to read queue stats and avoid auto-declare, set autoStartup=false
+        RabbitAdmin admin = new RabbitAdmin(connectionFactory);
+        // admin.setAutoStartup(false);
+        return admin;
     }
 
     @Bean
