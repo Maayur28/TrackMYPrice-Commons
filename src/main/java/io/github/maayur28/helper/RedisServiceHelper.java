@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 import static io.github.maayur28.utils.Constants.CONST_DEALS_OF_THE_DAY;
@@ -68,6 +69,14 @@ public class RedisServiceHelper {
 
     public Long incr(String key) {
         return redisConnection.sync().incr(key);
+    }
+
+    public Long incrBy(String key, long delta) {
+        return redisConnection.sync().incrby(key, delta);
+    }
+
+    public Double incrByFloat(String key, double delta) {
+        return redisConnection.sync().incrbyfloat(key, delta);
     }
 
     public void del(String key) {
@@ -249,6 +258,9 @@ public class RedisServiceHelper {
     // HLEN failed:productId -> number of entries
     public Long sizeHash(String hashKey) {
         return redisConnection.sync().hlen(hashKey);
+    }
+    public List<String> hkeys(String hashKey) {
+        return redisConnection.sync().hkeys(hashKey);
     }
 
     /**

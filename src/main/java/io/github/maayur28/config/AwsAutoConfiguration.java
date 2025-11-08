@@ -10,8 +10,10 @@ import org.springframework.context.annotation.Bean;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.cloudwatch.CloudWatchClient;
+import software.amazon.awssdk.services.ec2.Ec2Client;
 import software.amazon.awssdk.services.lambda.LambdaAsyncClient;
 import software.amazon.awssdk.services.lambda.LambdaClient;
+import software.amazon.awssdk.services.route53.Route53Client;
 import software.amazon.awssdk.services.sqs.SqsClient;
 import software.amazon.awssdk.services.ssm.SsmClient;
 
@@ -41,6 +43,24 @@ public class AwsAutoConfiguration {
     public SsmClient ssmClient() {
         return SsmClient.builder()
                 .region(REGION)
+                .credentialsProvider(creds())
+                .build();
+    }
+
+    @Bean(destroyMethod = "close")
+    @ConditionalOnMissingBean
+    public Ec2Client ec2Client() {
+        return Ec2Client.builder()
+                .region(REGION)
+                .credentialsProvider(creds())
+                .build();
+    }
+
+    @Bean(destroyMethod = "close")
+    @ConditionalOnMissingBean
+    public Route53Client route53Client() {
+        return Route53Client.builder()
+                .region(Region.AWS_GLOBAL)
                 .credentialsProvider(creds())
                 .build();
     }

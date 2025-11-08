@@ -1,59 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true">
-    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
-
-    <property name="SERVICE_NAME" value="${SERVICE_NAME}"/>
-    <property name="ENVIRONMENT" value="${ENVIRONMENT:-default}"/>
-    <property name="HOSTNAME" value="${HOSTNAME}"/>
-    <property name="LOG_LEVEL" value="${LOG_LEVEL:-INFO}"/>
-    <property name="ASYNC_QUEUE_SIZE" value="${ASYNC_QUEUE_SIZE:-8192}"/>
-    <property name="ASYNC_DISCARDING" value="${ASYNC_DISCARDING:-true}"/>
-
-    <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-            <providers>
-                <timestamp/>
-                <logLevel/>
-                <threadName/>
-                <loggerName/>
-                <message/>
-                <arguments/>
-                <mdc/>
-                <context/>
-                <tags/>
-                <stackTrace class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
-                    <maxDepthPerThrowable>50</maxDepthPerThrowable>
-                    <maxLength>8192</maxLength>
-                    <rootCauseFirst>true</rootCauseFirst>
-                    <exclude>sun\..*</exclude>
-                    <exclude>java\..*</exclude>
-                    <exclude>javax\..*</exclude>
-                    <exclude>org\.springframework\..*</exclude>
-                </stackTrace>
-                <jsonProvider class="net.logstash.logback.composite.GlobalCustomFieldsJsonProvider">
-                    <customFields>{
-                        "service":"${SERVICE_NAME}",
-                        "environment":"${ENVIRONMENT}",
-                        "replicaId":"${HOSTNAME}"
-                        }</customFields>
-                </jsonProvider>
-            </providers>
+<configuration>
+    <appender name="CloudWatch" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <pattern>{"replicaId":"${HOSTNAME}", "message": "%msg"}</pattern>
         </encoder>
     </appender>
-
-    <appender name="ASYNC_JSON" class="ch.qos.logback.classic.AsyncAppender">
-        <queueSize>${ASYNC_QUEUE_SIZE}</queueSize>
-        <neverBlock>true</neverBlock>
-        <discardingThreshold>${ASYNC_DISCARDING}</discardingThreshold>
-        <appender-ref ref="JSON_CONSOLE"/>
-    </appender>
-
-    <root level="${LOG_LEVEL}">
-        <appender-ref ref="ASYNC_JSON"/>
+    <root level="INFO">
+        <appender-ref ref="CloudWatch"/>
     </root>
-
-    <!-- Quiet noisy libs if you like -->
-    <logger name="org.springframework" level="INFO"/>
-    <logger name="org.apache.http" level="WARN"/>
-    <logger name="software.amazon.awssdk.request" level="WARN"/>
 </configuration>
