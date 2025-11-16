@@ -1,11 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <appender name="CloudWatch" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <pattern>{"replicaId":"${HOSTNAME}", "message": "%msg"}</pattern>
+
+    <property name="REPLICA_ID" value="${HOSTNAME}"/>
+    <property name="SERVICE_NAME" value="${trackmyprice.service.name}"/>
+
+    <!-- custom HTTP appender -->
+    <appender name="OPENOBS_HTTP" class="io.github.maayur28.logging.OpenObserveHttpAppender">
+        <url>https://logs.trackmyprice.in/api/default/default/_json</url>
+        <!-- credentials come from OO_USER / OO_PASS env or logback properties -->
+        <user>${OO_USER}</user>
+        <password>${OO_PASS}</password>
+
+        <queueSize>8192</queueSize>
+        <batchSize>100</batchSize>
+        <batchIntervalMs>1500</batchIntervalMs>
+        <spoolPath>logs/spool.ndjson</spoolPath>
+        <spoolBatchSize>500</spoolBatchSize>
+        <maxRetries>3</maxRetries>
+        <shutdownWaitMs>8000</shutdownWaitMs>
+
+        <service>${SERVICE_NAME}</service>
+    </appender>
+
+
+    <!-- Console JSON appender (prints to stdout; visible in docker logs / console) -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <fieldName>@timestamp</fieldName>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <loggerName fieldName="logger"/>
+                <threadName fieldName="thread"/>
+                <logLevel fieldName="level"/>
+                <message fieldName="message"/>
+                <stackTrace/>
+                <mdc/>
+                <globalCustomFields>{ "replicaId": "${REPLICA_ID}", "service": "${SERVICE_NAME}" }</globalCustomFields>
+            </providers>
         </encoder>
     </appender>
+
+    <!-- durable rolling file fallback -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/app.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/app.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>50MB</maxFileSize>
+        </triggeringPolicy>
+
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <fieldName>@timestamp</fieldName>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <loggerName fieldName="logger"/>
+                <threadName fieldName="thread"/>
+                <logLevel fieldName="level"/>
+                <message fieldName="message"/>
+                <stackTrace/>
+                <mdc/>
+                <globalCustomFields>{ "replicaId": "${REPLICA_ID}", "service": "${SERVICE_NAME}" }</globalCustomFields>
+            </providers>
+        </encoder>
+    </appender>
+
+    <!-- async wrappers -->
+    <appender name="ASYNC_OPENOBS" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>1024</queueSize>
+        <discardingThreshold>5</discardingThreshold>
+        <appender-ref ref="OPENOBS_HTTP"/>
+    </appender>
+
+    <appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>1024</queueSize>
+        <discardingThreshold>5</discardingThreshold>
+        <appender-ref ref="FILE"/>
+    </appender>
+
     <root level="INFO">
-        <appender-ref ref="CloudWatch"/>
+        <!-- Keep file + http, and add STDOUT so console logs appear again -->
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ASYNC_OPENOBS"/>
+        <appender-ref ref="ASYNC_FILE"/>
     </root>
 </configuration>
