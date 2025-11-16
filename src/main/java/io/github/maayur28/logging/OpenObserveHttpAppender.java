@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class OpenObserveHttpAppender extends AppenderBase<ILoggingEvent> {
 
-    // Configurable via logback-spring.xml setters
+    // Configurable via logback.xml setters
     private String url;
     private String user;
     private String password;
@@ -56,7 +56,7 @@ public class OpenObserveHttpAppender extends AppenderBase<ILoggingEvent> {
     // file lock for spool writes and truncation
     private final Object spoolFileLock = new Object();
 
-    // setters for logback-spring.xml
+    // setters for logback.xml
     public void setUrl(String url) {
         this.url = url;
     }

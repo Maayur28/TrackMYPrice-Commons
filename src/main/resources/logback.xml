@@ -2,7 +2,7 @@
 <configuration>
 
     <property name="REPLICA_ID" value="${HOSTNAME}"/>
-    <property name="SERVICE_NAME" value="${SERVICE_NAME:-UNKNOWN}"/>
+    <property name="SERVICE_NAME" value="${SERVICE_NAME}"/>
 
     <!-- custom HTTP appender -->
     <appender name="OPENOBS_HTTP" class="io.github.maayur28.logging.OpenObserveHttpAppender">
