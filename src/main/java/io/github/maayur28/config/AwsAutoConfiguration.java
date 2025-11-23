@@ -91,14 +91,4 @@ public class AwsAutoConfiguration {
                 .credentialsProvider(creds())
                 .build();
     }
-
-
-    @Bean
-    @ConditionalOnMissingBean
-    public MetricsProvider metricsProvider(
-            CloudWatchClient cloudWatchClient,
-            @Value("${trackmyprice.service.name}") String serviceName
-    ) {
-        return new CloudWatchMetricsProvider(cloudWatchClient, serviceName);
-    }
 }
