@@ -22,7 +22,7 @@ public class MetricsConfiguration {
         MetricsProvider cloudWatch = new CloudWatchMetricsProvider(cloudWatchClient, "TrackMyPrice");
 
         MetricsProvider influx = new InfluxMetricsProvider(
-                "https://influx.trackmyprice.in",
+                "https://metrics.trackmyprice.in",
                 System.getenv().getOrDefault("INFLUX_TOKEN","dummyToken"),
                 "trackmyprice",
                 "metrics",
